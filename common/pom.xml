@@ -11,6 +11,6 @@
 
     <groupId>org.apache.cmueller.camel.sus.camel-in-daily-use</groupId>
     <artifactId>common</artifactId>
-    <name>${groupId} : ${artifactId}</name>
+    <name>${project.groupId} : ${project.artifactId}</name>
     <packaging>jar</packaging>
 </project>

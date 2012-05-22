@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:cxf="http://camel.apache.org/schema/cxf"
+    xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+    xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+       http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd
+    ">
+
+    <jaxrs:server id="customerService"
+        address="http://0.0.0.0:9191/services/" 
+        staticSubresourceResolution="true">
+        
+        <jaxrs:serviceBeans>
+            <bean class="org.apache.cmueller.camel.sus.cidu.part1.CustomerServiceResource" />
+        </jaxrs:serviceBeans>
+        
+        <jaxrs:providers>  
+            <bean class="org.apache.cxf.jaxrs.provider.JSONProvider">
+                <property name="supportUnwrapped" value="true" /> 
+            </bean>
+        </jaxrs:providers> 
+    </jaxrs:server>
+</beans>

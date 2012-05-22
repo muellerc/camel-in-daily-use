@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+            http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+       ">
+    
+    <context:property-placeholder location="classpath:part-1.cfg"/>
+    
+    <bean id="route1" class="org.apache.cmueller.camel.sus.cidu.part1.Route1">
+        <property name="fromEndpoint" value="${route1.fromEndpoint}" />
+        <property name="toEndpoint" value="${route1.toEndpoint}" />
+    </bean>
+    
+    <bean id="route2" class="org.apache.cmueller.camel.sus.cidu.part1.Route2">
+        <property name="fromEndpoint" value="${route2.fromEndpoint}" />
+        <property name="toEndpoint" value="${route2.toEndpoint}" />
+    </bean>
+    
+    <bean id="route3" class="org.apache.cmueller.camel.sus.cidu.part1.Route3">
+        <property name="fromEndpoint" value="${route3.fromEndpoint}" />
+        <property name="enrichEndpoint" value="${route3.enrichEndpoint}" />
+        <property name="aggregationStrategy">
+            <bean class="org.apache.cmueller.camel.sus.cidu.part1.Part1AggregationStrategy" />
+        </property>
+        <property name="toEndpoint" value="${route3.toEndpoint}" />
+    </bean>
+    
+    <bean id="prepareRestRequest" class="org.apache.cmueller.camel.sus.cidu.part1.PrepareRestRequest" />
+    
+    <bean id="activemq" class="org.apache.activemq.camel.component.ActiveMQComponent">
+        <property name="brokerURL" value="tcp://localhost:61616"/>
+    </bean>
+    
+    <cxf:cxfEndpoint id="AddressChangeService"
+        address="${route1.address}"
+        serviceClass="org.apache.cmueller.camel.sus.cidu.part1.service.AddressChangeService"
+        endpointName="s:AddressChangeServicePort"
+        serviceName="s:AddressChangeService"
+        wsdlURL="META-INF/schema/addressChangeService.wsdl" 
+        xmlns:s="http://apache.org/cmueller/camel/sus/addressChange/service/1">
+    
+        <cxf:properties>
+            <entry key="schema-validation-enabled" value="true" />
+        </cxf:properties>
+        
+        <cxf:inInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+        </cxf:inInterceptors>
+        <cxf:outInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+        </cxf:outInterceptors>
+        <cxf:inFaultInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingInInterceptor"/>
+        </cxf:inFaultInterceptors>
+        <cxf:outFaultInterceptors>
+            <bean class="org.apache.cxf.interceptor.LoggingOutInterceptor"/>
+        </cxf:outFaultInterceptors>
+    </cxf:cxfEndpoint>
+    
+<!--     <cxf:rsClient id="CustomerService" address="${route3.enrichAddress}" /> -->
+    
+    <camel:camelContext id="camel" trace="true">
+        <camel:routeBuilder ref="route1"/>
+        <camel:routeBuilder ref="route2"/>
+        <camel:routeBuilder ref="route3"/>
+    </camel:camelContext>
+</beans>

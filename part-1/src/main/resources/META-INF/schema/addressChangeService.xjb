@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jaxb:bindings xmlns:jaxb="http://java.sun.com/xml/ns/jaxb"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+  version="2.1">
+    
+  <jaxb:bindings schemaLocation="addressChangeService.xsd">
+    <jaxb:bindings node="/xsd:schema[@targetNamespace='http://apache.org/cmueller/camel/sus/addressChange/model/1']">
+      <jaxb:schemaBindings>
+        <jaxb:package name="org.apache.cmueller.camel.sus.cidu.part1.model"/>
+      </jaxb:schemaBindings>
+    </jaxb:bindings>
+  </jaxb:bindings>
+</jaxb:bindings>

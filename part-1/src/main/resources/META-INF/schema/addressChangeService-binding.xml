@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<bindings 
+    xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+    wsdlLocation="addressChangeService.wsdl"
+    xmlns="http://java.sun.com/xml/ns/jaxws">
+    
+    <package name="org.apache.cmueller.camel.sus.cidu.part1.service" />
+</bindings>
