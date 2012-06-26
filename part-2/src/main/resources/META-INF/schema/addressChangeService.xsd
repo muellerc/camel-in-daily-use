@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema 
+    xmlns:tns="http://apache.org/cmueller/camel/sus/addressChange/model/1"
+    targetNamespace="http://apache.org/cmueller/camel/sus/addressChange/model/1"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified" 
+    attributeFormDefault="unqualified">
+    
+    <xs:element name="addressChange">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="clientId" minOccurs="1" maxOccurs="1" type="xs:string" />
+                <xs:element name="customerNumber" minOccurs="1" maxOccurs="1" type="xs:string" />
+                <xs:element name="address" minOccurs="1" maxOccurs="1" type="tns:address" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:element name="addressChangeResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="returnCode" minOccurs="1" maxOccurs="1" type="xs:string" />
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    
+    <xs:complexType name="address">
+        <xs:sequence>
+            <xs:element name="street" minOccurs="1" maxOccurs="1" type="xs:string" />
+            <xs:element name="streetNumber" minOccurs="1" maxOccurs="1" type="xs:string" />
+            <xs:element name="zip" minOccurs="1" maxOccurs="1" type="xs:string" />
+            <xs:element name="city" minOccurs="1" maxOccurs="1" type="xs:string" />
+            <xs:element name="country" minOccurs="1" maxOccurs="1" type="xs:string" />
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>

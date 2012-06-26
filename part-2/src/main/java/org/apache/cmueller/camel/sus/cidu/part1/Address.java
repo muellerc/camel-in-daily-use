@@ -1,37 +1,18 @@
-package org.apache.cmueller.camel.sus.cidu.common.model;
+package org.apache.cmueller.camel.sus.cidu.part1;
 
-import java.io.Serializable;
-
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlType;
 
-@XmlAccessorType(XmlAccessType.FIELD)
-@XmlType(name = "address", propOrder = {
-    "id", "street", "streetNumber", "zip", "city", "country"
-})
-public class AddressDTO implements Serializable {
+@XmlRootElement(name = "Address")
+@XmlType(propOrder = { "id", "street", "streetNumber", "zip", "city", "country" })
+public class Address {
 
-    private static final long serialVersionUID = 5477546109934895897L;
-    
-    private String id;
+	private String id;
 	private String street;
 	private String streetNumber;
 	private String zip;
 	private String city;
 	private String country;
-	
-	public AddressDTO() {
-	}
-
-	public AddressDTO(String id, String street, String streetNumber, String zip, String city, String country) {
-		this.id = id;
-		this.street = street;
-		this.streetNumber = streetNumber;
-		this.zip = zip;
-		this.city = city;
-		this.country = country;
-	}
 	
 	public String getId() {
     	return id;

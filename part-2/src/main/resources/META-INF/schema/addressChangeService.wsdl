@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<wsdl:definitions targetNamespace="http://apache.org/cmueller/camel/sus/addressChange/service/1"
+  xmlns:model="http://apache.org/cmueller/camel/sus/addressChange/model/1"
+  xmlns:service="http://apache.org/cmueller/camel/sus/addressChange/service/1"  
+  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+  xmlns:xsd="http://www.w3.org/2001/XMLSchema" 
+  xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/"
+  name="AddressChangeService" >
+
+  <wsdl:types>
+    <xsd:schema>
+      <xsd:import namespace="http://apache.org/cmueller/camel/sus/addressChange/model/1" schemaLocation="addresschangeService.xsd" />
+    </xsd:schema>
+  </wsdl:types>
+
+  <wsdl:message name="addressChange">
+    <wsdl:part name="parameters" element="model:addressChange" />
+  </wsdl:message>
+  
+  <wsdl:message name="addressChangeResponse">
+    <wsdl:part name="parameters" element="model:addressChangeResponse" />
+  </wsdl:message>
+
+  <wsdl:portType name="AddressChangeService">
+    <wsdl:operation name="changeAddress">
+      <wsdl:input message="service:addressChange" />
+      <wsdl:output message="service:addressChangeResponse" />
+    </wsdl:operation>
+  </wsdl:portType>
+
+  <wsdl:binding name="AddressChangeServiceSoapBinding" type="service:AddressChangeService">
+    <wsdlsoap:binding transport="http://schemas.xmlsoap.org/soap/http" style="document" />
+    
+    <wsdl:operation name="changeAddress">
+      <wsdlsoap:operation soapAction="http://apache.org/cmueller/camel/sus/addressChange/service/1/changeAddress" />
+      <wsdl:input>
+        <wsdlsoap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <wsdlsoap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+
+  <wsdl:service name="AddressChangeService">
+    <wsdl:port name="AddressChangeServicePort" binding="service:AddressChangeServiceSoapBinding">
+      <wsdlsoap:address location="http://localhost:8181/services/AddressChangeService" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

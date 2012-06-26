@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:camel="http://camel.apache.org/schema/spring"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:cxf="http://camel.apache.org/schema/cxf"
+       xsi:schemaLocation="
+            http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+            http://camel.apache.org/schema/spring http://camel.apache.org/schema/spring/camel-spring.xsd
+            http://camel.apache.org/schema/cxf http://camel.apache.org/schema/cxf/camel-cxf.xsd
+       ">
+    
+    <context:property-placeholder location="classpath:part-2.cfg" ignore-unresolvable="true" />
+    
+    <bean id="route4" class="org.apache.cmueller.camel.sus.cidu.part2.Route4">
+        <property name="fromEndpoint" value="${route4.fromEndpoint}"/>
+        <property name="toBillingEndpoint" value="${route4.toBillingEndpoint}"/>
+        <property name="toCrmEndpoint" value="${route4.toCrmEndpoint}"/>
+    </bean>
+    
+    <bean id="route5" class="org.apache.cmueller.camel.sus.cidu.part2.Route5">
+        <property name="fromEndpoint" value="${route5.fromEndpoint}"/>
+        <property name="toEndpoint" value="${route5.toEndpoint}"/>
+    </bean>
+    
+    <bean id="httpBindingBean" class="org.apache.cmueller.camel.sus.cidu.part2.HttpBindingBean">
+    </bean>
+    
+    <bean id="route6" class="org.apache.cmueller.camel.sus.cidu.part2.Route6">
+        <property name="fromEndpoint" value="${route6.fromEndpoint}"/>
+        <property name="toBillingSystem1Endpoint" value="${route6.toBillingSystem1Endpoint}"/>
+        <property name="toBillingSystem2Endpoint" value="${route6.toBillingSystem2Endpoint}"/>
+    </bean>
+    
+    <bean id="route7" class="org.apache.cmueller.camel.sus.cidu.part2.Route7">
+        <property name="fromEndpoint" value="${route7.fromEndpoint}"/>
+        <property name="toEndpoint" value="${route7.toEndpoint}"/>
+    </bean>
+    
+    <bean id="sqlBindingBean" class="org.apache.cmueller.camel.sus.cidu.part2.SqlBindingBean" />
+    
+    <bean id="route8" class="org.apache.cmueller.camel.sus.cidu.part2.Route8">
+        <property name="fromEndpoint" value="${route8.fromEndpoint}"/>
+    </bean>
+    
+    <bean id="jdbcBindingBean" class="org.apache.cmueller.camel.sus.cidu.part2.JdbcBindingBean">
+        <property name="storedProcedure">
+            <bean class="org.apache.cmueller.camel.sus.cidu.part2.AuditAddressUpdateStoredProcedure">
+                <constructor-arg index="0" ref="dataSource" />
+                <constructor-arg index="1" value="AUDIT_ADDRESS_UPDATE_STORED_PROCEDURE" />
+            </bean>
+        </property>
+    </bean>
+    
+    <camel:camelContext id="part-2" trace="true">
+        <camel:routeBuilder ref="route4"/>
+        <camel:routeBuilder ref="route5"/>
+        <camel:routeBuilder ref="route6"/>
+        <camel:routeBuilder ref="route7"/>
+        <camel:routeBuilder ref="route8"/>
+    </camel:camelContext>
+</beans>
