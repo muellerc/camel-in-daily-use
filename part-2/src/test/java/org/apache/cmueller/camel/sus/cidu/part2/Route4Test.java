@@ -35,7 +35,7 @@ public class Route4Test extends CamelSpringTestSupport {
 					});
 				
 				// mimic the behavior of 'Route6'
-				from("seda:BILLING_UPDATE")
+				from("seda:BILLING_AUDITING")
 					.to("mock:billingUpdate");
 			}
 		});

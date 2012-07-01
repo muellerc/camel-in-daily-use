@@ -51,7 +51,7 @@ public class Route6Test extends CamelSpringTestSupport {
 		String requestBody = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><addressChange><requestId>1</requestId><clientId>1</clientId><processingState>IN PROCESS</processingState><customerNumber>0815</customerNumber>" +
 				"<oldAddress><id>1</id><street>Galileistr.</street><streetNumber>180</streetNumber><zip>01129</zip><city>Dresden</city><country>Deutschland</country></oldAddress>" +
 				"<newAddress><street>Hahnstr.</street><streetNumber>25</streetNumber><zip>60528</zip><city>Frankfurt</city><country>Deutschland</country></newAddress></addressChange>";
-		template.sendBody("seda:BILLING_UPDATE", requestBody);
+		template.sendBody("seda:BILLING_AUDITING", requestBody);
 		
 		assertMockEndpointsSatisfied();
 	}
@@ -65,7 +65,7 @@ public class Route6Test extends CamelSpringTestSupport {
 		String requestBody = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><addressChange><requestId>1</requestId><clientId>99</clientId><processingState>IN PROCESS</processingState><customerNumber>0815</customerNumber>" +
 				"<oldAddress><id>1</id><street>Galileistr.</street><streetNumber>180</streetNumber><zip>01129</zip><city>Dresden</city><country>Deutschland</country></oldAddress>" +
 				"<newAddress><street>Hahnstr.</street><streetNumber>25</streetNumber><zip>60528</zip><city>Frankfurt</city><country>Deutschland</country></newAddress></addressChange>";
-		template.sendBody("seda:BILLING_UPDATE", requestBody);
+		template.sendBody("seda:BILLING_AUDITING", requestBody);
 		
 		assertMockEndpointsSatisfied();
 	}
@@ -79,7 +79,7 @@ public class Route6Test extends CamelSpringTestSupport {
 		String requestBody = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><addressChange><requestId>1</requestId><clientId>1001</clientId><processingState>IN PROCESS</processingState><customerNumber>0815</customerNumber>" +
 				"<oldAddress><id>1</id><street>Galileistr.</street><streetNumber>180</streetNumber><zip>01129</zip><city>Dresden</city><country>Deutschland</country></oldAddress>" +
 				"<newAddress><street>Hahnstr.</street><streetNumber>25</streetNumber><zip>60528</zip><city>Frankfurt</city><country>Deutschland</country></newAddress></addressChange>";
-		template.sendBody("seda:BILLING_UPDATE", requestBody);
+		template.sendBody("seda:BILLING_AUDITING", requestBody);
 		
 		assertMockEndpointsSatisfied();
 	}
