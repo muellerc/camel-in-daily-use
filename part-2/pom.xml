@@ -70,7 +70,7 @@
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
-            <artifactId>camel-test</artifactId>
+            <artifactId>camel-test-spring</artifactId>
             <version>${org.apache.camel.version}</version>
             <scope>test</scope>
         </dependency>
@@ -96,6 +96,12 @@
             <groupId>org.apache.xbean</groupId>
             <artifactId>xbean-spring</artifactId>
             <version>${org.apache.xbean.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-rt-rs-extension-providers</artifactId>
+            <version>${org.apache.cxf.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>

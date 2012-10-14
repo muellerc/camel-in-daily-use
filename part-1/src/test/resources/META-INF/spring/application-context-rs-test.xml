@@ -18,7 +18,7 @@
         </jaxrs:serviceBeans>
         
         <jaxrs:providers>  
-            <bean class="org.apache.cxf.jaxrs.provider.JSONProvider">
+            <bean class="org.apache.cxf.jaxrs.provider.json.JSONProvider">
                 <property name="supportUnwrapped" value="true" /> 
             </bean>
         </jaxrs:providers> 
