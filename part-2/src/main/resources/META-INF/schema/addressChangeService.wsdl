@@ -9,7 +9,7 @@
 
   <wsdl:types>
     <xsd:schema>
-      <xsd:import namespace="http://apache.org/cmueller/camel/sus/addressChange/model/1" schemaLocation="addresschangeService.xsd" />
+      <xsd:import namespace="http://apache.org/cmueller/camel/sus/addressChange/model/1" schemaLocation="addressChangeService.xsd" />
     </xsd:schema>
   </wsdl:types>
 
