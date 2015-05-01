@@ -16,7 +16,7 @@
         <commons-io.version>2.4</commons-io.version>
         <junit.version>4.11</junit.version>
         <org.apache.activemq.version>5.11.1</org.apache.activemq.version>
-        <org.apache.camel.version>2.15.2</org.apache.camel.version>
+        <org.apache.camel.version>2.15.3-SNAPSHOT</org.apache.camel.version>
         <org.apache.cxf.version>3.0.4</org.apache.cxf.version>
         <org.apache.derby.version>10.11.1.1</org.apache.derby.version>
         <org.apache.xbean.version>3.18</org.apache.xbean.version>
