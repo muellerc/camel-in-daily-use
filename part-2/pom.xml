@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.apache.cmueller.camel.sus</groupId>
         <artifactId>camel-in-daily-use</artifactId>
-        <version>1.2.0-SNAPSHOT</version>
+        <version>2.11.0-SNAPSHOT</version>
     </parent>
 
     <groupId>org.apache.cmueller.camel.sus.camel-in-daily-use</groupId>
@@ -39,6 +39,17 @@
             <groupId>org.apache.activemq</groupId>
             <artifactId>activemq-camel</artifactId>
             <version>${org.apache.activemq.version}</version>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.camel</groupId>
+                    <artifactId>camel-jms</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.camel</groupId>
+            <artifactId>camel-jms</artifactId>
+            <version>${org.apache.camel.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.camel</groupId>
@@ -114,6 +125,33 @@
             <groupId>org.apache.camel</groupId>
             <artifactId>camel-jetty</artifactId>
             <version>${org.apache.camel.version}</version>
+            <scope>test</scope>
+            <!-- CXF comes with a newer version of Jetty which cause failures -->
+            <exclusions>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-servlet</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-servlets</artifactId>
+                </exclusion>
+                <exclusion>
+                    <groupId>org.eclipse.jetty</groupId>
+                    <artifactId>jetty-client</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlet</artifactId>
+            <version>${org.eclipse.jetty.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.eclipse.jetty</groupId>
+            <artifactId>jetty-servlets</artifactId>
+            <version>${org.eclipse.jetty.version}</version>
             <scope>test</scope>
         </dependency>
         <dependency>
