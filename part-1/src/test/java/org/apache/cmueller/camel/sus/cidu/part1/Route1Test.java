@@ -9,7 +9,7 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.component.mock.MockEndpoint;
-import org.apache.camel.test.junit4.CamelSpringTestSupport;
+import org.apache.camel.test.spring.CamelSpringTestSupport;
 import org.apache.cmueller.camel.sus.cidu.common.model.AddressChangeDTO;
 import org.apache.cmueller.camel.sus.cidu.part1.model.Address;
 import org.apache.cmueller.camel.sus.cidu.part1.model.AddressChange;
